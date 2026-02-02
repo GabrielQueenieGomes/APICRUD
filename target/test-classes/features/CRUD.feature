@@ -1,3 +1,4 @@
+@API_Regression @API_Functional
 Feature: API HTTP CRUD function test
 Scenario: As a user, I can get data from my appplication
 Given put url
@@ -7,7 +8,7 @@ Then validate data with test cases
 Scenario: As a user, I can send or post data from my appplication
 Given put post url
 When send post request and get response
-Then validate data with test cases
+Then validate post data with test cases
 
 Scenario: As a user, I can update or put data from my appplication
 Given put update url
