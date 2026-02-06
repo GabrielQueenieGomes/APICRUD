@@ -1,6 +1,7 @@
 package com.api.crud.function;
 
 import java.io.File;
+import java.util.Map;
 
 import org.testng.asserts.SoftAssert;
 
@@ -12,7 +13,7 @@ import io.restassured.specification.RequestSpecification;
 public class CreateSend {
 	
 	public void post() {
-		File file = new File("src/main/resources/Simple.json");
+		File file = new File("src/main/resources/Complex.json");
 		RequestSpecification rs = RestAssured.given();
 		rs.body(file);
 		
@@ -24,13 +25,20 @@ public class CreateSend {
 		sf.assertTrue(resPost.contentType().contains("json"));
 		sf.assertTrue(!resPost.body().asString().equals(null));
 		
-		sf.assertTrue(resPost.body().asString().contains("Name"));
-		sf.assertTrue(resPost.body().asString().contains("Salary"));
+		sf.assertTrue(resPost.body().asString().contains("name"));
+		sf.assertTrue(resPost.body().asString().contains("salary"));
 		
 		// value = json parser = JsonPath
 		JsonPath jp = resPost.jsonPath();
-		sf.assertTrue(jp.get("json.Name").equals("Sarower"));
-		sf.assertTrue(jp.get("json.Salary").equals(5000));
+		sf.assertTrue(jp.get("json.name").equals("Sarower"));
+		sf.assertTrue(jp.get("json.salary").equals(8000));
+		
+		Map<String, Object> myMap = jp.getMap("json");
+		System.out.println(myMap);
+		myMap.forEach((key, value) -> {
+			System.out.println(key + " = " + value);
+		});
+		
 		sf.assertAll();
 	}
 
