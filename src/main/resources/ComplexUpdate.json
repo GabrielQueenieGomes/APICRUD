@@ -1,8 +1,9 @@
 {
   "employeeId": "EMP001",
   "name": "David",
-  "skills": ["Java", "Selenium", "RestAssured"],
   "salary": 8000,
+  "skills": ["Java", "Selenium", "RestAssured"],
+  "data": {"id": 2,"email": "test@test.com","name": "John" },
   "projects": [
     {
       "projectId": "P101",
